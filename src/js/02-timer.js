@@ -8,7 +8,6 @@ const elements = {
     timer: document.querySelector(`.timer`),
 }
 const values = elements.timer.querySelectorAll(`.value`);
-console.log(values[0].innerHTML)
 let ms;
 
 elements.startBtn.disabled = true;
@@ -36,12 +35,16 @@ flatpickr(elements.picker, options);
 
 function countdown() {
     const timerId = setInterval(() =>
-    {const count = convertMs(ms);
+    {
+        const count = convertMs(ms);
     values[0].innerHTML = count.days;
     values[1].innerHTML = count.hours;
     values[2].innerHTML = count.minutes;
     values[3].innerHTML = count.seconds;
         ms = ms - 1000;
+        if (ms < 0) {
+             clearInterval(timerId);
+        }
     },
     1000)
 }

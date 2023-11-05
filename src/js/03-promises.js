@@ -6,8 +6,8 @@ function startGeneration(evt) {
   evt.preventDefault();
   let { delay, step, amount } = evt.currentTarget.elements;
   for (let position = 1; position <= amount.valueAsNumber; position++) {
-    delay = position * step.valueAsNumber;
-    createPromise(position, delay)
+    let delayX = position * step.value - step.value + delay.valueAsNumber;
+    createPromise(position, delayX)
   }
 }
 
